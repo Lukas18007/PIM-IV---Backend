@@ -4,7 +4,7 @@ var db = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'lukas1234',
-  database : 'funcionarios'
+  database : 'istorm'
 });
 
 db.connect((err) => {
