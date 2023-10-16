@@ -16,10 +16,34 @@ router.get('/', (req, res) => {
 });
   
 router.post('/', (req, res) => {
-    const { nome, cargo, salario } = req.body;
-    const query = 'INSERT INTO funcionarios (nome, cargo, salario) VALUES (?, ?, ?)';
+    const {
+         nome, 
+         cargo, 
+         salario, 
+         cpf, 
+         telefone, 
+         endereco, 
+         dtAdmissao, 
+         horasTrabalhadas, 
+         bonus, 
+         departamento, 
+         dataNascimento 
+        } = req.body;
+    const query = 'INSERT INTO funcionarios (nome, cargo, salario, cpf, telefone, endereco, dtAdmissao, horasTrabalhadas, bonus, departamento, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-    db.query(query, [nome, cargo, salario], (err, result) => {
+    db.query(query, [
+        nome, 
+        cargo, 
+        salario, 
+        cpf, 
+        telefone, 
+        endereco, 
+        dtAdmissao, 
+        horasTrabalhadas, 
+        bonus, 
+        departamento, 
+        dataNascimento
+    ], (err, result) => {
         if (err) {
             console.error('Erro ao adicionar funcionário:', err);
             res.status(500).send('Erro ao adicionar funcionário');
