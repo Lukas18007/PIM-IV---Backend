@@ -2,17 +2,36 @@ const express = require('express');
 const router = express.Router();
 const db = require('../connection');
 
-router.get('/', (req, res) => {
-    const query = 'SELECT * FROM funcionarios';
-
-    db.query(query, (err, results) => {
+router.get('/:id?', (req, res) => {
+    const { id } = req.params;
+  
+    if (id) {
+      const query = 'SELECT * FROM funcionarios WHERE id = ?';
+  
+      db.query(query, [id], (err, results) => {
         if (err) {
-            console.error('Erro ao buscar funcionários:', err);
-            res.status(500).send('Erro ao buscar funcionários');
+          console.error('Erro ao buscar funcionário por ID:', err);
+          res.status(500).send('Erro ao buscar funcionário por ID');
         } else {
-            res.json(results);
+          if (results.length === 0) {
+            res.status(404).send('Funcionário não encontrado');
+          } else {
+            res.json(results[0]);
+          }
         }
-    });
+      });
+    } else {
+      const query = 'SELECT * FROM funcionarios';
+  
+      db.query(query, (err, results) => {
+        if (err) {
+          console.error('Erro ao buscar funcionários:', err);
+          res.status(500).send('Erro ao buscar funcionários');
+        } else {
+          res.json(results);
+        }
+      });
+    }
 });
   
 router.post('/', (req, res) => {
@@ -55,10 +74,35 @@ router.post('/', (req, res) => {
   
 router.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { nome, cargo, salario } = req.body;
-    const query = 'UPDATE funcionarios SET nome = ?, cargo = ?, salario = ? WHERE id = ?';
+    const {
+        nome, 
+        cargo, 
+        salario, 
+        cpf, 
+        telefone, 
+        endereco, 
+        dtAdmissao, 
+        horasTrabalhadas, 
+        bonus, 
+        departamento, 
+        dataNascimento 
+    } = req.body;
+    const query = 'UPDATE funcionarios SET nome = ?, cargo = ?, salario = ?, cpf = ?, telefone = ?, endereço = ?, dtAdmissao = ?, horasTrabalhadas = ?, bonus = ?, departamento = ?, dataNascimento = ? WHERE id = ?';
 
-    db.query(query, [nome, cargo, salario, id], (err) => {
+    db.query(query, [
+        nome, 
+        cargo, 
+        salario, 
+        cpf, 
+        telefone, 
+        endereco, 
+        dtAdmissao, 
+        horasTrabalhadas, 
+        bonus, 
+        departamento, 
+        dataNascimento,
+        id
+    ], (err) => {
         if (err) {
             console.error('Erro ao atualizar funcionário:', err);
             res.status(500).send('Erro ao atualizar funcionário');
