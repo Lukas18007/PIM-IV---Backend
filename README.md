@@ -120,34 +120,3 @@ O json a ser enviado é como esse:
 #### DELETE
 ##### localhost:3000/funcionarios/{id do funcionario}
 Deleta o funcionário explicitado no id da URL.
-
-## Banco de dados
-Esse projeto utiliza mysql para persistir e consumir dados.
-
-Rode as queries que se encontram no diretório `./migrations/{nome do arquivo}`
-
-### Conexão
-Para conectar-se, crie um arquivo connection.js na raiz do projeto com as suas configurações locais e seguindo esse modelo.
-
-exemplo:
-
-```javascript
-var mysql = require('mysql');
-
-var db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'seu usuario',
-  password : 'sua senha',
-  database : 'istorm'
-});
-
-db.connect((err) => {
-    if (err) {
-      console.error('Erro ao conectar ao banco de dados:', err);
-    } else {
-      console.log('Conectado ao banco de dados MySQL');
-    }
-});
-
-module.exports = db;
-```
