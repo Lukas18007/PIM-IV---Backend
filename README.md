@@ -82,5 +82,7 @@ Deleta o funcionário explicitado no id da URL.
 ## Banco de dados
 Esse projeto utiliza mysql para persistir e consumir dados.
 
+Rode as queries que se encontram no diretório `./migrations/{nome do arquivo}`
+
 ### Conexão
 Para conectar-se, altere as configurações encontradas no arquivo connection.js para as suas configurações locais.
