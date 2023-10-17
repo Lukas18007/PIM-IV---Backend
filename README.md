@@ -1,6 +1,48 @@
 # PIM-IV---Backend
 Projeto de faculdade com o objetivo de ser uma API em node.js que dita as regras de negócio de uma folha de pagamento.
 
+## Instalação
+
+### Clone o projeto
+```sh
+git clone https://github.com/{seu_usuario}/PIM-IV---Backend.git
+```
+### Instale as dependencias
+```sh
+npm install
+```
+
+## Banco de dados
+Esse projeto utiliza mysql para persistir e consumir dados.
+
+Rode as queries que se encontram no diretório `./migrations/{nome do arquivo}`
+
+### Conexão
+Para conectar-se, crie um arquivo connection.js na raiz do projeto com as suas configurações locais e seguindo esse modelo.
+
+exemplo:
+
+```javascript
+var mysql = require('mysql');
+
+var db = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'seu usuario',
+  password : 'sua senha',
+  database : 'istorm'
+});
+
+db.connect((err) => {
+    if (err) {
+      console.error('Erro ao conectar ao banco de dados:', err);
+    } else {
+      console.log('Conectado ao banco de dados MySQL');
+    }
+});
+
+module.exports = db;
+```
+
 ## ENDPOINTS
 Essa seção disponibilizará as rotas que devem ser utilizadas ao chamar a API de acordo com seu metodo HTTP
 
