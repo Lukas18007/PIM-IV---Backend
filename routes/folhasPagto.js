@@ -97,7 +97,47 @@ router.post('/', (req, res) => {
 });
   
 router.put('/:id', (req, res) => {
-    
+    const { id } = req.params;
+
+    const {
+        funcionario,
+        imposto,
+        data_vigencia,
+    } = req.body;
+
+    const salario = 'SELECT salario FROM funcionarios WHERE id = ?';
+
+    db.query(salario, [funcionario], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar o salário desse funcionário:', err);
+            res.status(500).send('Erro ao buscar o salário desse funcionário');
+        } else {
+            if (results.length === 0) {
+                res.status(404).send('Funcionario não encontrado');
+            } else {
+                let vlImposto = results[0].salario * (imposto / 100);
+                let recebimento = results[0].salario - vlImposto;
+
+                const query = "UPDATE folhaspagto SET funcionario = ?, imposto = ?, vlImposto = ?, recebimento = ?, data_vigencia = ? WHERE id = ?";
+
+                db.query(query, [
+                    funcionario,
+                    imposto,
+                    vlImposto,
+                    recebimento,
+                    data_vigencia,
+                    id
+                ], (err, result) => {
+                    if (err) {
+                        console.error('Erro ao atualizar folha de pagamento:', err);
+                        res.status(500).send('Erro ao atualizar folha de pagamento');
+                    } else {
+                        res.status(201).send('Folha de pagamento atualizada com sucesso');
+                    }
+                });
+            }
+        }
+    });
 });
   
 router.delete('/:id', (req, res) => {
