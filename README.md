@@ -44,6 +44,11 @@ db.connect((err) => {
 module.exports = db;
 ```
 
+### Ativar servidor local para consumir a API
+```sh
+node app.js
+```
+
 ## ENDPOINTS
 Essa seção disponibilizará as rotas que devem ser utilizadas ao chamar a API de acordo com seu metodo HTTP
 
