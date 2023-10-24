@@ -9,6 +9,7 @@ git clone https://github.com/{seu_usuario}/PIM-IV---Backend.git
 ```
 ### Instale as dependencias
 ```sh
+cd PIM-IV---Backend
 npm install
 ```
 
