@@ -44,6 +44,12 @@ db.connect((err) => {
 module.exports = db;
 ```
 
+Rode os comando abaixo no mySQL workbench para habilitar o plugin mysql:
+```sql
+ALTER USER 'seu usuario'@'localhost' IDENTIFIED WITH mysql_native_password BY 'sua senha';
+flush privileges;
+```
+
 ### Ativar servidor local para consumir a API
 ```sh
 node app.js
