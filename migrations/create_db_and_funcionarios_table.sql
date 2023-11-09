@@ -10,8 +10,7 @@ CREATE TABLE funcionarios (
   telefone VARCHAR(15),
   endereco VARCHAR(255),
   dtAdmissao DATE,
-  horasTrabalhadas DECIMAL(10, 2),
-  bonus DECIMAL(10, 2),
-  departamento VARCHAR(50),
+  departamento INT,
   dataNascimento DATE
+  FOREIGN KEY (departamento) REFERENCES departamento(id)
 );
