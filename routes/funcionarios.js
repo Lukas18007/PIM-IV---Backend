@@ -33,6 +33,24 @@ router.get('/:id?', (req, res) => {
       });
     }
 });
+
+router.get('/departamento/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM funcionarios WHERE departamento = ?';
+
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar funcionário por ID:', err);
+      res.status(500).send('Erro ao buscar funcionário por ID');
+    } else {
+      if (results.length === 0) {
+        res.status(404).send('Funcionário não encontrado');
+      } else {
+        res.json(results[0]);
+      }
+    }
+  });
+});
   
 router.post('/', (req, res) => {
     const {
