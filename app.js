@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const funcionariosRoutes = require('./routes/funcionarios');
 const folhasPagtoRoutes = require('./routes/folhasPagto');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,6 +15,7 @@ app.get('/', function (req, res) {
 
 app.use('/funcionarios', funcionariosRoutes);
 app.use('/folhas_pagamento', folhasPagtoRoutes);
+app.use('/auth', authRoutes);
 
 app.listen(port, () => {
   console.log(`API rodando na porta ${port}`);
