@@ -10,6 +10,7 @@ INSERT INTO tipos_usuario (descricao) VALUES ("funcionario"), ("gerente");
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     tipo INT,
     departamento INT,
     senha VARCHAR(255),
