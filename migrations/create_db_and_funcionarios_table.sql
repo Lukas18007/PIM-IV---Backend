@@ -11,6 +11,6 @@ CREATE TABLE funcionarios (
   endereco VARCHAR(255),
   dtAdmissao DATE,
   departamento INT,
-  dataNascimento DATE
-  FOREIGN KEY (departamento) REFERENCES departamento(id)
+  dataNascimento DATE,
+  FOREIGN KEY (departamento) REFERENCES departamentos(id)
 );

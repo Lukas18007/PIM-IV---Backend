@@ -13,6 +13,6 @@ CREATE TABLE usuarios (
     tipo INT,
     departamento INT,
     senha VARCHAR(255),
-    FOREIGN KEY (tipos_usuario) REFERENCES tipo(id),
+    FOREIGN KEY (tipo) REFERENCES tipos_usuario(id),
     FOREIGN KEY (departamento) REFERENCES departamento(id)
 );
