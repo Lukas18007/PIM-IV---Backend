@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const secretKey = 'a1b2c3d4';
 
 router.post('/register', async (req, res) => {
-    const { nome, tipo, departamento, senha } = req.body;
+    const { nome, tipo, departamento, senha, email } = req.body;
 
     db.query('SELECT * FROM usuarios WHERE nome = ?', [nome], async (err, result) => {
         if (err) {
@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
 
         const hashedsenha = await bcrypt.hash(senha, 6);
 
-        db.query('INSERT INTO usuarios (nome, tipo, departamento, senha) VALUES (?, ?, ?, ?)', [nome, tipo, departamento, hashedsenha], (err) => {
+        db.query('INSERT INTO usuarios (nome, tipo, departamento, senha, email) VALUES (?, ?, ?, ?, ?)', [nome, tipo, departamento, hashedsenha, email], (err) => {
             if (err) {
                 return res.status(500).send(`Erro ao registrar usuário: ${err}`);
             }
