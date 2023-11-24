@@ -61,7 +61,6 @@ router.post('/', (req, res) => {
          telefone, 
          endereco, 
          dtAdmissao, 
-         horasTrabalhadas, 
          bonus, 
          departamento, 
          dataNascimento 
