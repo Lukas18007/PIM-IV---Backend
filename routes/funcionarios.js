@@ -64,7 +64,7 @@ router.post('/', (req, res) => {
          departamento, 
          dataNascimento 
         } = req.body;
-    const query = 'INSERT INTO funcionarios (nome, cargo, salario, cpf, telefone, endereco, dtAdmissao, horasTrabalhadas, bonus, departamento, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO funcionarios (nome, cargo, salario, cpf, telefone, endereco, dtAdmissao, departamento, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     db.query(query, [
         nome, 
@@ -73,9 +73,7 @@ router.post('/', (req, res) => {
         cpf, 
         telefone, 
         endereco, 
-        dtAdmissao, 
-        horasTrabalhadas, 
-        bonus, 
+        dtAdmissao,
         departamento, 
         dataNascimento
     ], (err, result) => {
@@ -97,13 +95,11 @@ router.put('/:id', (req, res) => {
         cpf, 
         telefone, 
         endereco, 
-        dtAdmissao, 
-        horasTrabalhadas, 
-        bonus, 
+        dtAdmissao,
         departamento, 
         dataNascimento 
     } = req.body;
-    const query = 'UPDATE funcionarios SET nome = ?, cargo = ?, salario = ?, cpf = ?, telefone = ?, endereço = ?, dtAdmissao = ?, horasTrabalhadas = ?, bonus = ?, departamento = ?, dataNascimento = ? WHERE id = ?';
+    const query = 'UPDATE funcionarios SET nome = ?, cargo = ?, salario = ?, cpf = ?, telefone = ?, endereço = ?, dtAdmissao = ?, departamento = ?, dataNascimento = ? WHERE id = ?';
 
     db.query(query, [
         nome, 
@@ -113,8 +109,6 @@ router.put('/:id', (req, res) => {
         telefone, 
         endereco, 
         dtAdmissao, 
-        horasTrabalhadas, 
-        bonus, 
         departamento, 
         dataNascimento,
         id
