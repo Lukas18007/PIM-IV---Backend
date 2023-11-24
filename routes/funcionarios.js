@@ -60,8 +60,7 @@ router.post('/', (req, res) => {
          cpf, 
          telefone, 
          endereco, 
-         dtAdmissao, 
-         bonus, 
+         dtAdmissao,
          departamento, 
          dataNascimento 
         } = req.body;
