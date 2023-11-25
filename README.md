@@ -19,19 +19,22 @@ Esse projeto utiliza mysql para persistir e consumir dados.
 Rode as queries que se encontram no diretório `./migrations/{nome do arquivo}`
 
 ### Conexão
-Para conectar-se, crie um arquivo connection.js na raiz do projeto com as suas configurações locais e seguindo esse modelo.
+Para conectar-se, crie um arquivo ".env" e um "connection.js" na raiz do projeto seguindo esse modelo.
 
-exemplo:
+exemplo .env:
+```sh
+DATABASE_URL='mysql://jot4829012defcv89qxl:************@aws.connect.psdb.cloud/istorm?ssl={"rejectUnauthorized":true}'
+
+```
+OBS: Os ******** representam a senha que deverá ser pedida para o responsável técnico.
+
+exemplo connection.js:
 
 ```javascript
+require('dotenv').config();
 var mysql = require('mysql');
 
-var db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'seu usuario',
-  password : 'sua senha',
-  database : 'istorm'
-});
+var db = mysql.createConnection(process.env.DATABASE_URL);
 
 db.connect((err) => {
     if (err) {
@@ -42,12 +45,6 @@ db.connect((err) => {
 });
 
 module.exports = db;
-```
-
-Rode os comando abaixo no mySQL workbench para habilitar o plugin mysql:
-```sql
-ALTER USER 'seu usuario'@'localhost' IDENTIFIED WITH mysql_native_password BY 'sua senha';
-flush privileges;
 ```
 
 ### Ativar servidor local para consumir a API
