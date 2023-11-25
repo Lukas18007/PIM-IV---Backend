@@ -52,9 +52,7 @@ exemplo de retorno:
     "telefone": "(13) 97******",
     "endereco": "tr************",
     "dtAdmissao": "2022-11-01",
-    "horasTrabalhadas": 1000,
-    "bonus": 500,
-    "departamento": "Desenvolvimento",
+    "departamento": 1,
     "dataNascimento": "2003-07-18"
 }
 ```
@@ -71,9 +69,7 @@ Utilizado para cadastrar um funcionário. Deve ser enviado no body da requisiç�
     "telefone": "(13) 97******",
     "endereco": "tr************",
     "dtAdmissao": "2022-11-01",
-    "horasTrabalhadas": 1000,
-    "bonus": 500,
-    "departamento": "Desenvolvimento",
+    "departamento": 1,
     "dataNascimento": "2003-07-18"
 }
 ```
@@ -99,9 +95,7 @@ O json a ser enviado é como esse:
     "telefone": "(13) 97******",
     "endereco": "tr************",
     "dtAdmissao": "2022-11-01",
-    "horasTrabalhadas": 1000,
-    "bonus": 500,
-    "departamento": "Desenvolvimento",
+    "departamento": 1,
     "dataNascimento": "2003-07-18"
 }
 ```

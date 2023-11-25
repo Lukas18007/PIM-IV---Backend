@@ -6,7 +6,7 @@ router.get('/:id?', (req, res) => {
     const { id } = req.params;
   
     if (id) {
-      const query = 'SELECT * FROM folhaspagto WHERE id = ?';
+      const query = 'SELECT * FROM folhasPagto WHERE id = ?';
   
       db.query(query, [id], (err, results) => {
         if (err) {
@@ -21,7 +21,7 @@ router.get('/:id?', (req, res) => {
         }
       });
     } else {
-      const query = 'SELECT * FROM folhaspagto';
+      const query = 'SELECT * FROM folhasPagto';
   
       db.query(query, (err, results) => {
         if (err) {
@@ -36,7 +36,7 @@ router.get('/:id?', (req, res) => {
 
 router.get('/funcionario/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'SELECT * FROM folhaspagto WHERE funcionario = ?';
+    const query = 'SELECT * FROM folhasPagto WHERE funcionario = ?';
 
     db.query(query, [id], (err, results) => {
         if (err) {
@@ -77,14 +77,14 @@ router.post('/', (req, res) => {
                 vlImposto = results[0].salario * (imposto / 100);
                 recebimento = (results[0].salario - vlImposto) + 300;
 
-                const query = 'INSERT INTO folhaspagto (funcionario, imposto, vlImposto, horasTrabalhadas, bonus, recebimento, data_vigencia) VALUES (?, ?, ?, ?, ?, ?, ?)';
+                const query = 'INSERT INTO folhasPagto (funcionario, imposto, vlImposto, horasTrabalhadas, bonus, recebimento, data_vigencia) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
                 db.query(query, [
                     funcionario,
                     imposto,
                     vlImposto,
+                    horasTrabalhadas,
                     bonus,
-                    data_vigencia,
                     recebimento,
                     data_vigencia
                 ], (err, result) => {
@@ -124,7 +124,7 @@ router.put('/:id', (req, res) => {
                 let vlImposto = results[0].salario * (imposto / 100);
                 let recebimento = (results[0].salario - vlImposto) + bonus;
 
-                const query = "UPDATE folhaspagto SET funcionario = ?, imposto = ?, vlImposto = ?, horasTrabalhadas = ?, bonus = ?, recebimento = ?, data_vigencia = ? WHERE id = ?";
+                const query = "UPDATE folhasPagto SET funcionario = ?, imposto = ?, vlImposto = ?, horasTrabalhadas = ?, bonus = ?, recebimento = ?, data_vigencia = ? WHERE id = ?";
 
                 db.query(query, [
                     funcionario,
@@ -150,7 +150,7 @@ router.put('/:id', (req, res) => {
   
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'DELETE FROM folhaspagto WHERE id = ?';
+    const query = 'DELETE FROM folhasPagto WHERE id = ?';
 
     db.query(query, [id], (err) => {
         if (err) {
