@@ -143,7 +143,9 @@ exemplo de retorno:
     "funcionario": 1,
     "imposto": 8.2,
     "vlImposto": 246,
-    "recebimento": 2754,
+    "horasTrabalhadas": 30.5,
+    "bonus": 300,
+    "recebimento": 3054,
     "data_vigencia": "2023-08-23"
 }
 ```
@@ -159,7 +161,9 @@ exemplo de retorno:
     "funcionario": 1,
     "imposto": 8.2,
     "vlImposto": 246,
-    "recebimento": 2754,
+    "horasTrabalhadas": 30.5,
+    "bonus": 300,
+    "recebimento": 3054,
     "data_vigencia": "2023-08-23"
 }
 ```
@@ -171,11 +175,13 @@ Utilizado para cadastrar uma folha de pagamento. Deve ser enviado no body da req
 {
     "funcionario": 1,
     "imposto": 8.2,
+    "horasTrabalhadas": 30.5,
+    "bonus": 300,
     "data_vigencia": "2023-08-23"
 }
 ```
 
-OBS: O valor do imposto é um valor em porcentagem, e através dele a própria API faz o cálculo do vlImposto e do recebimento baseados no salário do funcionario que foi dado, e são inseridos no banco de dados junto com os dados enviados no json.
+OBS: O valor do imposto é um valor em porcentagem, e através dele a própria API faz o cálculo do vlImposto, bonus e do recebimento baseados no salário do funcionario que foi dado, e são inseridos no banco de dados junto com os dados enviados no json.
 
 Retorna o id da folha de pagamento cadastrada em um json:
 ```json
@@ -192,6 +198,8 @@ O json a ser enviado é como esse:
 {
     "funcionario": 1,
     "imposto": 8.2,
+    "horasTrabalhadas": 30.5,
+    "bonus": 300,
     "data_vigencia": "2023-08-23"
 }
 ```
