@@ -56,6 +56,8 @@ router.post('/', (req, res) => {
     const {
         funcionario,
         imposto,
+        horasTrabalhadas,
+        bonus,
         data_vigencia,
     } = req.body;
 
@@ -73,14 +75,16 @@ router.post('/', (req, res) => {
                 res.status(404).send('Funcionario não encontrado');
             } else {
                 vlImposto = results[0].salario * (imposto / 100);
-                recebimento = results[0].salario - vlImposto;
+                recebimento = (results[0].salario - vlImposto) + 300;
 
-                const query = 'INSERT INTO folhaspagto (funcionario, imposto, vlImposto, recebimento, data_vigencia) VALUES (?, ?, ?, ?, ?)';
+                const query = 'INSERT INTO folhaspagto (funcionario, imposto, vlImposto, horasTrabalhadas, bonus, recebimento, data_vigencia) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
                 db.query(query, [
                     funcionario,
                     imposto,
                     vlImposto,
+                    bonus,
+                    data_vigencia,
                     recebimento,
                     data_vigencia
                 ], (err, result) => {
@@ -102,6 +106,8 @@ router.put('/:id', (req, res) => {
     const {
         funcionario,
         imposto,
+        horasTrabalhadas,
+        bonus,
         data_vigencia,
     } = req.body;
 
@@ -116,14 +122,16 @@ router.put('/:id', (req, res) => {
                 res.status(404).send('Funcionario não encontrado');
             } else {
                 let vlImposto = results[0].salario * (imposto / 100);
-                let recebimento = results[0].salario - vlImposto;
+                let recebimento = (results[0].salario - vlImposto) + bonus;
 
-                const query = "UPDATE folhaspagto SET funcionario = ?, imposto = ?, vlImposto = ?, recebimento = ?, data_vigencia = ? WHERE id = ?";
+                const query = "UPDATE folhaspagto SET funcionario = ?, imposto = ?, vlImposto = ?, horasTrabalhadas = ?, bonus = ?, recebimento = ?, data_vigencia = ? WHERE id = ?";
 
                 db.query(query, [
                     funcionario,
                     imposto,
                     vlImposto,
+                    horasTrabalhadas,
+                    bonus,
                     recebimento,
                     data_vigencia,
                     id
