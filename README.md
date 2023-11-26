@@ -38,7 +38,7 @@ Essa seção disponibilizará as rotas que devem ser utilizadas ao chamar a API 
 
 ### Funcionários
 #### GET
-##### localhost:3000/funcionarios/{id do funcionario}
+##### https://pimbackend.onrender.com/funcionarios/{id do funcionario}
 Caso não seja passado nenhum id retornará todos os funcionarios
 
 exemplo de retorno:
@@ -58,7 +58,7 @@ exemplo de retorno:
 ```
 
 #### POST
-##### localhost:3000/funcionarios
+##### https://pimbackend.onrender.com/funcionarios
 Utilizado para cadastrar um funcionário. Deve ser enviado no body da requisição um json como esse:
 ```json
 {
@@ -83,7 +83,7 @@ Retorna o id do funcionário cadastrado em um json:
 ```
 
 #### PUT
-##### localhost:3000/funcionarios/{id do funcionario}
+##### https://pimbackend.onrender.com/funcionarios/{id do funcionario}
 Utilizado para editar um funcionário que é explicitado com base no id da url. Deve ser enviado um json COMPLETO com TODOS os campos atualizados para o valor que você deseja na mesma ordem explicitada abaixo. (caso queira manter o valor padrão apenas repita o valor nesse campo).
 O json a ser enviado é como esse:
 ```json
@@ -100,12 +100,12 @@ O json a ser enviado é como esse:
 }
 ```
 #### DELETE
-##### localhost:3000/funcionarios/{id do funcionario}
+##### https://pimbackend.onrender.com/funcionarios/{id do funcionario}
 Deleta o funcionário explicitado no id da URL.
 
 ### Folhas de pagamento
 #### GET
-##### localhost:3000/folhas_pagamento/{id da folha de pagamento}
+##### https://pimbackend.onrender.com/folhas_pagamento/{id da folha de pagamento}
 Caso não seja passado nenhum id retornará todas as folhas
 
 exemplo de retorno:
@@ -123,7 +123,7 @@ exemplo de retorno:
 ```
 
 #### GET
-##### localhost:3000/folhas_pagamento/funcionario/{id do funcionario}
+##### https://pimbackend.onrender.com/folhas_pagamento/funcionario/{id do funcionario}
 Retorna todas as folhas do funcionario explicitado no id da URL
 
 exemplo de retorno:
@@ -141,7 +141,7 @@ exemplo de retorno:
 ```
 
 #### POST
-##### localhost:3000/folhas_pagamento
+##### https://pimbackend.onrender.com/folhas_pagamento
 Utilizado para cadastrar uma folha de pagamento. Deve ser enviado no body da requisição um json como esse:
 ```json
 {
@@ -163,7 +163,7 @@ Retorna o id da folha de pagamento cadastrada em um json:
 ```
 
 #### PUT
-##### localhost:3000/folhas_pagamento/{id da folha de pagamento}
+##### https://pimbackend.onrender.com/folhas_pagamento/{id da folha de pagamento}
 Utilizado para editar uma folha de pagamentos que é explicitada com base no id da url. Deve ser enviado um json COMPLETO com TODOS os campos atualizados para o valor que você deseja na mesma ordem explicitada abaixo. (caso queira manter o valor padrão apenas repita o valor nesse campo).
 O json a ser enviado é como esse:
 ```json
@@ -179,12 +179,12 @@ O json a ser enviado é como esse:
 OBS: O sistema irá recalcular o vlImposto e o recebemento dessa folha baseado na nova porcentagem de imposto.
 
 #### DELETE
-##### localhost:3000/folhas_pagamento/{id da folha de pagamento}
+##### https://pimbackend.onrender.com/folhas_pagamento/{id da folha de pagamento}
 Deleta a folha de pagamento explicitada no id da URL.
 
 ### Usuários
 #### POST
-##### localhost:3000/auth/register
+##### https://pimbackend.onrender.com/auth/register
 Use essa rota para cadastrar usuários.
 O json a ser enviado é como esse:
 ```json
@@ -197,7 +197,7 @@ O json a ser enviado é como esse:
 ```
 
 #### POST
-##### localhost:3000/auth/login
+##### https://pimbackend.onrender.com/auth/login
 Use essa rota para fazer login.
 O json a ser enviado é como esse:
 ```json
