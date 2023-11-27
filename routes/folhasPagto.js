@@ -6,7 +6,7 @@ router.get('/:id?', (req, res) => {
     const { id } = req.params;
   
     if (id) {
-      const query = 'SELECT fp.*, f.nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE id = ?';
+      const query = 'SELECT fp.*, f.nome as nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE id = ?';
   
       db.query(query, [id], (err, results) => {
         if (err) {
@@ -21,7 +21,7 @@ router.get('/:id?', (req, res) => {
         }
       });
     } else {
-      const query = 'SELECT fp.*, f.nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario';
+      const query = 'SELECT fp.*, f.nome as nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario';
   
       db.query(query, (err, results) => {
         if (err) {
@@ -36,7 +36,7 @@ router.get('/:id?', (req, res) => {
 
 router.get('/funcionario/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'SELECT fp.*, f.nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE funcionario = ?';
+    const query = 'SELECT fp.*, f.nome as nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE funcionario = ?';
 
     db.query(query, [id], (err, results) => {
         if (err) {
