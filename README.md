@@ -217,3 +217,17 @@ O retorno esperado é como esse:
     "departamento": 1
 }
 ```
+
+### Departamentos
+#### GET
+##### https://pimbackend.onrender.com/departamentos/{id do departamento}
+Caso não seja passado nenhum id retornará todos os departamentos
+
+exemplo de retorno:
+```json
+{
+    "id": 1,
+    "nome": "nome",
+    "localizacao": "localização",
+}
+```
