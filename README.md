@@ -192,7 +192,8 @@ O json a ser enviado é como esse:
     "nome": "lukas",
     "tipo": 1,
     "departamento": 1,
-    "senha": "12345678"
+    "senha": "12345678",
+    "email": "teste@teste.com"
 }
 ```
 
@@ -211,6 +212,7 @@ O retorno esperado é como esse:
 ```json
 {
     "token": "token_de_autenticação",
+    "nome": "lukas",
     "tipo": 1,
     "departamento": 1
 }
