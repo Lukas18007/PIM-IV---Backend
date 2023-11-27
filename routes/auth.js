@@ -9,7 +9,7 @@ const secretKey = 'a1b2c3d4';
 router.post('/register', async (req, res) => {
     const { nome, tipo, departamento, senha, email } = req.body;
 
-    db.query('SELECT * FROM usuarios WHERE nome = ?', [nome], async (err, result) => {
+    db.query('SELECT * FROM usuarios WHERE email = ?', [email], async (err, result) => {
         if (err) {
             return res.status(500).send('Erro no servidor');
         }
