@@ -75,7 +75,7 @@ router.post('/', (req, res) => {
                 res.status(404).send('Funcionario não encontrado');
             } else {
                 vlImposto = results[0].salario * (imposto / 100);
-                recebimento = (results[0].salario - vlImposto) + 300;
+                recebimento = (results[0].salario - vlImposto) + bonus;
 
                 const query = 'INSERT INTO folhasPagto (funcionario, imposto, vlImposto, horasTrabalhadas, bonus, recebimento, data_vigencia) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
