@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
             return res.status(401).send('Credenciais inválidas');
         }
 
-        const token = jwt.sign({ nome }, secretKey, { expiresIn: '1h' });
+        const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
 
         res.status(200).json({ 
             token: token,
