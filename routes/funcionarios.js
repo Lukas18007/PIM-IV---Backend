@@ -46,7 +46,7 @@ router.get('/departamento/:id', (req, res) => {
       if (results.length === 0) {
         res.status(404).send('Funcionário não encontrado');
       } else {
-        res.json(results[0]);
+        res.json(results);
       }
     }
   });
