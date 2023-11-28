@@ -161,7 +161,7 @@ router.put('/:id', (req, res) => {
                 res.status(404).send('Funcionario não encontrado');
             } else {
                 let vlImposto = results[0].salario * (imposto / 100);
-                let recebimento = (results[0].salario - vlImposto) + bonus;
+                let recebimento = results[0].salario - vlImposto + bonus;
 
                 const query = "UPDATE folhasPagto SET funcionario = ?, imposto = ?, vlImposto = ?, horasTrabalhadas = ?, bonus = ?, recebimento = ?, data_vigencia = ?, usuario = ? WHERE id = ?";
 
