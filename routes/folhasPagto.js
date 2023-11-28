@@ -51,6 +51,24 @@ router.get('/funcionario/:id', (req, res) => {
         }
     });
 });
+
+router.get('/departamento/:id', (req, res) => {
+    const { id } = req.params;
+    const query = 'SELECT fp.*, f.nome as nomeFunc FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE f.departamento = ?';
+
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar as folhas desse departamento:', err);
+            res.status(500).send('Erro ao buscar as folhas desse departamento');
+        } else {
+            if (results.length === 0) {
+                res.status(404).send('Folhas de pagamento não encontradas para esse departamento');
+            } else {
+                res.json(results);
+            }
+        }
+    });
+});
   
 router.post('/', (req, res) => {
     const {
