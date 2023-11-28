@@ -99,7 +99,7 @@ router.put('/:id', (req, res) => {
         departamento, 
         dataNascimento 
     } = req.body;
-    const query = 'UPDATE funcionarios SET nome = ?, cargo = ?, salario = ?, cpf = ?, telefone = ?, endereço = ?, dtAdmissao = ?, departamento = ?, dataNascimento = ? WHERE id = ?';
+    const query = 'UPDATE funcionarios SET nome = ?, cargo = ?, salario = ?, cpf = ?, telefone = ?, endereco = ?, dtAdmissao = ?, departamento = ?, dataNascimento = ? WHERE id = ?';
 
     db.query(query, [
         nome, 
