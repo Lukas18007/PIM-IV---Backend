@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const secretKey = 'a1b2c3d4';
 
 router.get('/usuarios/departamento/:id', async (req, res) => {
-    const id = req.params;
+    const { id } = req.params;
 
     db.query('SELECT * FROM usuarios WHERE departamento = ?', [id], async (err, result) => {
         if (err) {
