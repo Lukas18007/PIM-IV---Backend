@@ -6,6 +6,23 @@ const jwt = require('jsonwebtoken');
 
 const secretKey = 'a1b2c3d4';
 
+router.get('/usuarios/departamento/:id', async (req, res) => {
+    const id = req.params;
+
+    db.query('SELECT * FROM usuarios WHERE departamento = ?', [id], async (err, result) => {
+        if (err) {
+            console.error('Erro ao buscar usuario:', err);
+            res.status(500).send('Erro ao buscar usuario');
+        } else {
+            if (result.length === 0) {
+                res.status(404).send('Usuário não encontrado');
+            } else {
+                res.json(result);
+            }
+        }
+    });
+});
+
 router.post('/register', async (req, res) => {
     const { nome, tipo, departamento, senha, email } = req.body;
 
