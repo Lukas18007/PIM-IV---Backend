@@ -69,6 +69,24 @@ router.get('/departamento/:id', (req, res) => {
         }
     });
 });
+
+router.get('/usuario/:nome', (req, res) => {
+    const { nome } = req.params;
+    const query = 'SELECT fp.*, f.nome as nomeFunc, f.salario FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE fp.usuario = ?';
+
+    db.query(query, [nome], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar as folhas desse departamento:', err);
+            res.status(500).send('Erro ao buscar as folhas desse departamento');
+        } else {
+            if (results.length === 0) {
+                res.status(404).send('Folhas de pagamento não encontradas para esse departamento');
+            } else {
+                res.json(results);
+            }
+        }
+    });
+});
   
 router.post('/', (req, res) => {
     const {
@@ -77,6 +95,7 @@ router.post('/', (req, res) => {
         horasTrabalhadas,
         bonus,
         data_vigencia,
+        usuario
     } = req.body;
 
     var vlImposto = 0;
@@ -95,7 +114,7 @@ router.post('/', (req, res) => {
                 vlImposto = results[0].salario * (imposto / 100);
                 recebimento = results[0].salario - vlImposto + bonus;
 
-                const query = 'INSERT INTO folhasPagto (funcionario, imposto, vlImposto, horasTrabalhadas, bonus, recebimento, data_vigencia) VALUES (?, ?, ?, ?, ?, ?, ?)';
+                const query = 'INSERT INTO folhasPagto (funcionario, imposto, vlImposto, horasTrabalhadas, bonus, recebimento, data_vigencia, usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
                 db.query(query, [
                     funcionario,
@@ -104,7 +123,8 @@ router.post('/', (req, res) => {
                     horasTrabalhadas,
                     bonus,
                     recebimento,
-                    data_vigencia
+                    data_vigencia,
+                    usuario
                 ], (err, result) => {
                     if (err) {
                         console.error('Erro ao adicionar folha de pagamento:', err);
@@ -127,6 +147,7 @@ router.put('/:id', (req, res) => {
         horasTrabalhadas,
         bonus,
         data_vigencia,
+        usuario
     } = req.body;
 
     const salario = 'SELECT salario FROM funcionarios WHERE id = ?';
@@ -142,7 +163,7 @@ router.put('/:id', (req, res) => {
                 let vlImposto = results[0].salario * (imposto / 100);
                 let recebimento = (results[0].salario - vlImposto) + bonus;
 
-                const query = "UPDATE folhasPagto SET funcionario = ?, imposto = ?, vlImposto = ?, horasTrabalhadas = ?, bonus = ?, recebimento = ?, data_vigencia = ? WHERE id = ?";
+                const query = "UPDATE folhasPagto SET funcionario = ?, imposto = ?, vlImposto = ?, horasTrabalhadas = ?, bonus = ?, recebimento = ?, data_vigencia = ?, usuario = ? WHERE id = ?";
 
                 db.query(query, [
                     funcionario,
@@ -152,6 +173,7 @@ router.put('/:id', (req, res) => {
                     bonus,
                     recebimento,
                     data_vigencia,
+                    usuario,
                     id
                 ], (err, result) => {
                     if (err) {
