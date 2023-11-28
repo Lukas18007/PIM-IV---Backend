@@ -6,7 +6,7 @@ router.get('/:id?', (req, res) => {
     const { id } = req.params;
   
     if (id) {
-      const query = 'SELECT fp.*, f.nome as nomeFunc, f.salario FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE id = ?';
+      const query = 'SELECT fp.*, f.nome as nomeFunc, f.salario FROM folhasPagto fp INNER JOIN funcionarios f ON f.id = fp.funcionario WHERE fp.id = ?';
   
       db.query(query, [id], (err, results) => {
         if (err) {
